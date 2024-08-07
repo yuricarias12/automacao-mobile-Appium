@@ -1,46 +1,63 @@
 package org.example.test;
 
-import org.example.core.DSL;
+import org.example.core.BaseTest;
 import org.example.core.DriverFactory;
-import org.junit.After;
+import org.example.page.FormularioPage;
+import org.example.page.MenuPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
-public class CadastroTeste {
+public class CadastroTeste extends BaseTest {
 
+    private MenuPage menuPage = new MenuPage();
+    private FormularioPage formularioPage = new FormularioPage();
 
-    private DSL dsl = new DSL();
 
     @Before
     public void inicializarAppium() throws MalformedURLException {
-        dsl.clicarPorTexto("Formulário");
+       menuPage.acessarFormulario();
     }
 
-    @After
-    public void finalizarApp() throws MalformedURLException {
-        DriverFactory.killDriver();
+
+    @Test
+    public void deveRealizarCadastro() throws MalformedURLException {
+        //Preencher campos
+        formularioPage.escreverNome("Yuri");
+        formularioPage.selecionarCombo("Nintendo Switch");
+        formularioPage.clicarCheck();
+        formularioPage.clicarSwitch();
+
+        //Salvar
+        formularioPage.salvar();
+
+        //Verificações
+        Assert.assertEquals("Yuri", formularioPage.obterNomeCadastrado());
+        Assert.assertEquals("Console: switch", formularioPage.obterConsoleCadastrado());
+        Assert.assertTrue(formularioPage.obterSwitchCadastrado().endsWith("Off"));
+        Assert.assertTrue(formularioPage.obterCheckCadastrado().endsWith("Marcado"));
+
     }
 
     @Test
-    public void deveCadastrarAsInformacoes() throws MalformedURLException {
-        //Preencher campos
-        dsl.escrever(By.className("android.widget.EditText"), "Yuri");
-        dsl.clicar(By.className("android.widget.CheckBox"));
-        dsl.clicar(By.className("android.widget.Switch"));
-        dsl.selecionarCombo(By.className("android.widget.Spinner"), "Nintendo Switch");
+    public void deveRealizarCadastroDemorado() throws MalformedURLException {
+        formularioPage.escreverNome("Yuri");
 
-        //Salvar
-        dsl.clicarPorTexto("SALVAR");
+
+        DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+        formularioPage.salvarDemorado();
+//        esperar(3000);
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(0));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Nome: Yuri']")));
 
         //Verificações
-        Assert.assertEquals("Nome: Yuri", dsl.obterTexto(By.xpath("//android.widget.TextView[@text='Nome: Yuri']")));
-        Assert.assertEquals("Console: switch", dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Console:')]")));
-        Assert.assertTrue(dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Switch:')]")).endsWith("Off"));
-        Assert.assertTrue(dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Checkbox')]")).endsWith("Marcado"));
+        Assert.assertEquals("Yuri", formularioPage.obterNomeCadastrado());
 
     }
 }
