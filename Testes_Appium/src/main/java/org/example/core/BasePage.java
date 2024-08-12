@@ -1,6 +1,9 @@
 package org.example.core;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static org.example.core.DriverFactory.getDriver;
 
@@ -29,5 +32,11 @@ public class BasePage {
 
     public boolean isCheckMarcado(By by) {
         return getDriver().findElement(by).getAttribute("checked").equals("true");
+    }
+
+    public boolean existeElementoPorTexto(String texto) {
+        List<WebElement> elementos = getDriver().findElements(By.xpath("//*[@text = '"+texto+"']"));
+        return elementos.size() > 0;
+
     }
 }

@@ -6,13 +6,13 @@ import org.example.page.MenuPage;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AlertaTeste extends BaseTest {
+public class AlertTeste extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private AlertaPage page = new AlertaPage();
 
     @Test
-    public void dveConfirmarAlerta() {
+    public void deveConfirmarAlerta() {
         //Acessar menu alerta
         menu.acessarAlertas();
         //Clicar em alerta confirm

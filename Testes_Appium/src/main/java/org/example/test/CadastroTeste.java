@@ -49,15 +49,14 @@ public class CadastroTeste extends BaseTest {
     public void deveRealizarCadastroDemorado() throws MalformedURLException {
         formularioPage.escreverNome("Yuri");
 
-
         DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         formularioPage.salvarDemorado();
 //        esperar(3000);
-        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(0));
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Nome: Yuri']")));
 
         //Verificações
-        Assert.assertEquals("Yuri", formularioPage.obterNomeCadastrado());
+        Assert.assertEquals("Nome: Yuri", formularioPage.obterNomeCadastrado());
 
     }
 }

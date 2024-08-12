@@ -6,7 +6,7 @@ import org.example.page.SplashPage;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SplashTest extends BaseTest {
+public class SplashTeste extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private SplashPage page = new SplashPage();

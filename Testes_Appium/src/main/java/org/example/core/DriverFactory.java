@@ -1,7 +1,6 @@
 package org.example.core;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -35,7 +34,7 @@ public class DriverFactory {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.findElement(By.xpath("//*[@text='Formulário']")).click();
+        //driver.findElement(By.xpath("//*[@text='Formulário']")).click();
     }
 
     public static void killDriver() {
