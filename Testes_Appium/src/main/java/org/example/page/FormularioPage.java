@@ -3,6 +3,9 @@ package org.example.page;
 import io.appium.java_client.AppiumBy;
 import org.example.core.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static org.example.core.DriverFactory.getDriver;
 
 //Classes com PAGE, são utilizadas para localizar um elemento na tela e também como interagir com eles.
 public class FormularioPage extends BasePage {
@@ -33,6 +36,19 @@ public class FormularioPage extends BasePage {
 
     public boolean isCheckMarcado() {
         return isCheckMarcado(By.className("android.widget.Checkbox"));
+    }
+
+    public void clicarSeekBar(double posicao) {
+        int delta = 35;
+        WebElement seek = getDriver().findElement(new AppiumBy.ByAccessibilityId("slid"));
+        int y = seek.getLocation().y + (seek.getSize().height / 2);
+        System.out.println(y);
+
+        int xinicial = seek.getLocation().x + delta;
+        int x = (int) (xinicial + ((seek.getSize().width - 2*delta) * posicao));
+        System.out.println(x);
+
+        tap(x, y);
     }
 
     public boolean isSwitchMarcado() {

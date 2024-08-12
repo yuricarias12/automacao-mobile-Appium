@@ -1,5 +1,6 @@
 package org.example.test;
 
+import io.appium.java_client.AppiumBy;
 import org.example.core.BaseTest;
 import org.example.core.DriverFactory;
 import org.example.page.FormularioPage;
@@ -58,5 +59,32 @@ public class CadastroTeste extends BaseTest {
         //Verificações
         Assert.assertEquals("Nome: Yuri", formularioPage.obterNomeCadastrado());
 
+    }
+
+    @Test
+    public void deveAlterarData() {
+        formularioPage.clicarPorTexto("01/01/2000");
+        formularioPage.clicarPorTexto("20");
+        formularioPage.clicarPorTexto("OK");
+        Assert.assertTrue(formularioPage.existeElementoPorTexto("20/01/2000"));
+    }
+
+    @Test
+    public void deveAlterarHora() {
+        formularioPage.clicarPorTexto("12:00");
+        formularioPage.clicar(new AppiumBy.ByAccessibilityId("20"));
+        formularioPage.clicar(new AppiumBy.ByAccessibilityId("40"));
+        formularioPage.clicarPorTexto("OK");
+        Assert.assertTrue(formularioPage.existeElementoPorTexto("20:40"));
+    }
+
+    @Test
+    public void deveInteragirComSeekBar() {
+        //Clicar no seekbark
+        formularioPage.clicarSeekBar(0.57);
+
+        //Salvar
+        formularioPage.salvar();
+        //Obter valor
     }
 }
