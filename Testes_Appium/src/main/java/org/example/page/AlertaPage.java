@@ -1,7 +1,6 @@
 package org.example.page;
 
 import org.example.core.BasePage;
-import org.openqa.selenium.By;
 
 public class AlertaPage extends BasePage {
 
@@ -11,14 +10,6 @@ public class AlertaPage extends BasePage {
 
     public void clicarAlertaSimples() {
         clicarPorTexto("ALERTA SIMPLES");
-    }
-
-    public String obterTituloAlerta() {
-        return obterTexto(By.id("android:id/alertTitle"));
-    }
-
-    public String obterMensagemAlerta() {
-        return obterTexto(By.id("android:id/message"));
     }
 
     public void confirmar() {
