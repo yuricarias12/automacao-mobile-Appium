@@ -1,6 +1,7 @@
 package org.example.core;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -35,6 +36,36 @@ public class DriverFactory {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         //driver.findElement(By.xpath("//*[@text='Formulário']")).click();
+    }
+
+    private static void createTestObjectDriver() {
+        MutableCapabilities caps = new MutableCapabilities();
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("appium:app", "storage:filename=CTAppium_2_0.apk");
+        caps.setCapability("automationName", "UiAutomator2");
+
+        //Settings for Emulator
+//    	caps.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
+//    	caps.setCapability("appium:platformVersion", "12.0");
+
+        //Settings for real device
+        caps.setCapability("appium:deviceName", "Samsung Galaxy S9");
+        caps.setCapability("appium:platformVersion", "10");
+
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        sauceOptions.setCapability("username", "USERNAME_GOES_HERE");
+        sauceOptions.setCapability("accessKey", "ACCESS_KEY_GOES_HERE");
+        sauceOptions.setCapability("build", "appium-build-WCS7C");
+        sauceOptions.setCapability("name", "Test CTAppium");
+        sauceOptions.setCapability("deviceOrientation", "PORTRAIT");
+        caps.setCapability("sauce:options", sauceOptions);
+        try {
+            URL url = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub");
+            driver = new AndroidDriver(url, caps);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public static void killDriver() {

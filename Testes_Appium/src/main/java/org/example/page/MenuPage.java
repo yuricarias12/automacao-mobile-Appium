@@ -52,4 +52,12 @@ public class MenuPage extends BasePage {
         scrollDown();
         clicarPorTexto("Drag and drop");
     }
+
+    public void acessarSBHibrido(){
+        clicarPorTexto("SeuBarriga Híbrido");
+    }
+
+    public void acessarSBNativo(){
+        clicarPorTexto("SeuBarriga Nativo");
+    }
 }
