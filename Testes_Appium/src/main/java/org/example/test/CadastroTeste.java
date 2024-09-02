@@ -39,7 +39,7 @@ public class CadastroTeste extends BaseTest {
         formularioPage.salvar();
 
         //Verificações
-        Assert.assertEquals("Yuri", formularioPage.obterNomeCadastrado());
+        Assert.assertEquals("Nome: Yuri", formularioPage.obterNomeCadastrado());
         Assert.assertEquals("Console: switch", formularioPage.obterConsoleCadastrado());
         Assert.assertTrue(formularioPage.obterSwitchCadastrado().endsWith("Off"));
         Assert.assertTrue(formularioPage.obterCheckCadastrado().endsWith("Marcado"));

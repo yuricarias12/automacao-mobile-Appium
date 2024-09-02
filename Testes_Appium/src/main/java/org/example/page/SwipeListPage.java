@@ -9,7 +9,7 @@ import static org.example.core.DriverFactory.getDriver;
 public class SwipeListPage extends BasePage {
 
     public void swipeElementLeft(String opcao) {
-        swipeEmElementos(getDriver().findElement(By.xpath("//*[@text='"+opcao+"']/..")), 0.9, 0.1);
+        swipeEmElementos(getDriver().findElement(By.xpath("//android.widget.TextView[@text='"+opcao+"']/..")), 0.9, 0.1);
     }
 
     public void swipeElementRight(String opcao) {
