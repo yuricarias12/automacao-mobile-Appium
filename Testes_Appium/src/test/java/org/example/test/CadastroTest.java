@@ -1,7 +1,6 @@
 package org.example.test;
 
 import io.appium.java_client.AppiumBy;
-import org.example.core.BaseTest;
 import org.example.core.DriverFactory;
 import org.example.page.FormularioPage;
 import org.example.page.MenuPage;
@@ -15,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.time.Duration;
 
-public class CadastroTeste extends BaseTest {
+public class CadastroTest extends BaseTest {
 
     private MenuPage menuPage = new MenuPage();
     private FormularioPage formularioPage = new FormularioPage();
@@ -71,7 +70,7 @@ public class CadastroTeste extends BaseTest {
 
     @Test
     public void deveAlterarHora() {
-        formularioPage.clicarPorTexto("12:00");
+        formularioPage.clicarPorTexto("09:00");
         formularioPage.clicar(new AppiumBy.ByAccessibilityId("20"));
         formularioPage.clicar(new AppiumBy.ByAccessibilityId("40"));
         formularioPage.clicarPorTexto("OK");

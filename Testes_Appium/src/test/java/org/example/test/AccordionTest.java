@@ -1,12 +1,12 @@
 package org.example.test;
 
-import org.example.core.BaseTest;
+
 import org.example.page.AccordionPage;
 import org.example.page.MenuPage;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AccordionTeste extends BaseTest {
+public class AccordionTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private AccordionPage page = new AccordionPage();

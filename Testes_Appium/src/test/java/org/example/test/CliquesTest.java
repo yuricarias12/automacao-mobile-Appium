@@ -1,13 +1,12 @@
 package org.example.test;
 
-import org.example.core.BaseTest;
 import org.example.page.CliquesPage;
 import org.example.page.MenuPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CliquesTeste extends BaseTest {
+public class CliquesTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private CliquesPage page = new CliquesPage();

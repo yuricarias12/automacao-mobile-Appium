@@ -8,11 +8,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import java.time.Duration;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class FormularioTeste {
 
@@ -24,9 +24,9 @@ public class FormularioTeste {
         desiredCapabilities.setCapability("automationName", "uiautomator2");
         desiredCapabilities.setCapability("app", "C:\\Users\\Yuri\\Desktop\\Curso_Appium\\Testes_Appium\\src\\main\\resources\\CTAppium_2_0.apk");
 
-        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         //Selecionar formulario
         //Utilizando a class do elemento
@@ -55,9 +55,9 @@ public class FormularioTeste {
         desiredCapabilities.setCapability("automationName", "uiautomator2");
         desiredCapabilities.setCapability("app", "C:\\Users\\Yuri\\Desktop\\Curso_Appium\\Testes_Appium\\src\\main\\resources\\CTAppium_2_0.apk");
 
-        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         //Selecionar formulario
         //Utilizando xpath
@@ -86,9 +86,9 @@ public class FormularioTeste {
         desiredCapabilities.setCapability("automationName", "uiautomator2");
         desiredCapabilities.setCapability("app", "C:\\Users\\Yuri\\Desktop\\Curso_Appium\\Testes_Appium\\src\\main\\resources\\CTAppium_2_0.apk");
 
-        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         //Selecionar formulario
         //Utilizando xpath
