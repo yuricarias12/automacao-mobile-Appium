@@ -1,6 +1,5 @@
 package org.example.test;
 
-import org.example.core.BaseTest;
 import org.example.page.MenuPage;
 import org.example.page.SwipeListPage;
 import org.junit.Assert;

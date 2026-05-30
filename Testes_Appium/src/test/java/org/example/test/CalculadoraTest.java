@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class CalculadoraTeste {
+public class CalculadoraTest {
 
     @Test
     public void deveSomarDoisValores() throws MalformedURLException {
@@ -22,7 +22,7 @@ public class CalculadoraTeste {
         desiredCapabilities.setCapability("appPackage", "com.google.android.calculator");
         desiredCapabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
 
-        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
 
         WebElement el1 = (WebElement) driver.findElement(AppiumBy.accessibilityId("2"));
         el1.click();

@@ -1,12 +1,11 @@
 package org.example.test;
 
-import org.example.core.BaseTest;
 import org.example.page.DragAndDropPage;
 import org.example.page.MenuPage;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DragAndDropTeste extends BaseTest {
+public class DragAndDropTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private DragAndDropPage page = new DragAndDropPage();
@@ -22,19 +21,19 @@ public class DragAndDropTeste extends BaseTest {
 
         //verificar estado inicial
         esperar(2000);
-        Assert.assertEquals(estadoInicial, page.obterLista());
+        Assert.assertArrayEquals(estadoInicial, page.obterLista());
 
         //arrastar "Esta" para "e arraste para"
         page.arrastar("Esta", "e arraste para");
 
         //verificar estado intermediario
-        Assert.assertEquals(estadoIntermediario, page.obterLista());
+        Assert.assertArrayEquals(estadoIntermediario, page.obterLista());
 
         //arrastar "Faça um clique longo", para "é uma lista"
         page.arrastar("Faça um clique longo,", "é uma lista");
 
         //verificar estado final
-        Assert.assertEquals(estadoFinal, page.obterLista());
+        Assert.assertArrayEquals(estadoFinal, page.obterLista());
 
     }
 }

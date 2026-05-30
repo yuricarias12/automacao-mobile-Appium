@@ -1,5 +1,6 @@
-package org.example.core;
+package org.example.test;
 
+import org.example.core.DriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Rule;

@@ -25,10 +25,10 @@ public class DriverFactory {
         desiredCapabilities.setCapability("platformName", "Android");
         desiredCapabilities.setCapability("deviceName", "emulator");
         desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability("app", "C:\\Users\\Yuri\\Desktop\\Curso_Appium\\Testes_Appium\\src\\main\\resources\\CTAppium_2_0.apk");
+        desiredCapabilities.setCapability("app", "C:\\Users\\yuri_\\OneDrive\\Documentos\\Estudo_DeviceFarm\\automacao-mobile-Appium\\Testes_Appium\\src\\main\\resources\\CTAppium_2_0.apk");
 
         try {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
