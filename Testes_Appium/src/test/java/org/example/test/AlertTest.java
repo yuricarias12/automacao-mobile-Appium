@@ -2,16 +2,16 @@ package org.example.test;
 
 import org.example.page.AlertaPage;
 import org.example.page.MenuPage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class AlertTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private AlertaPage page = new AlertaPage();
 
-    @Before
+    @BeforeMethod
     public void setup() {
         menu.acessarAlertas();
     }
@@ -42,7 +42,5 @@ public class AlertTest extends BaseTest {
 
         //Verificar que a mensagem não está presente
         Assert.assertFalse(page.existeElementoPorTexto("Pode clicar no OK ou fora da caixa para sair"));
-
-
     }
 }

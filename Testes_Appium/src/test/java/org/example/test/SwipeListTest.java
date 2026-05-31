@@ -2,11 +2,11 @@ package org.example.test;
 
 import org.example.page.MenuPage;
 import org.example.page.SwipeListPage;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
-public class SwipeListTeste extends BaseTest {
+public class SwipeListTest extends BaseTest {
 
     MenuPage menu = new MenuPage();
     SwipeListPage page = new SwipeListPage();

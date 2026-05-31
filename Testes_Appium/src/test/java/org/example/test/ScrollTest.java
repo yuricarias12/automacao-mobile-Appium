@@ -1,8 +1,8 @@
 package org.example.test;
 
 import org.example.page.MenuPage;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static org.example.core.DriverFactory.getDriver;
 
-public class ScrollTeste extends BaseTest {
+public class ScrollTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
 

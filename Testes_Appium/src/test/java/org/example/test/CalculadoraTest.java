@@ -1,41 +1,51 @@
 package org.example.test;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.Assert;
-import org.junit.Test;
+import org.example.core.DriverFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.Test;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class CalculadoraTest {
 
+    @BeforeMethod
+    public void setUp() {
+        // Chama o método exclusivo para a calculadora
+        DriverFactory.getDriverCalculadora("Google Pixel 7 Pro Emulator", "13.0");
+    }
+
     @Test
-    public void deveSomarDoisValores() throws MalformedURLException {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "emulator");
-        desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability("appPackage", "com.google.android.calculator");
-        desiredCapabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
+    public void deveSomarDoisValores() {
+        AndroidDriver driver = DriverFactory.getDriver();
 
-        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), desiredCapabilities);
+        driver.findElement(AppiumBy.accessibilityId("2")).click();
+        driver.findElement(AppiumBy.accessibilityId("plus")).click();
+        driver.findElement(AppiumBy.accessibilityId("2")).click();
+        driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
-        WebElement el1 = (WebElement) driver.findElement(AppiumBy.accessibilityId("2"));
-        el1.click();
-        WebElement el2 = (WebElement) driver.findElement(AppiumBy.accessibilityId("plus"));
-        el2.click();
-        WebElement el3 = (WebElement) driver.findElement(AppiumBy.accessibilityId("2"));
-        el3.click();
-        WebElement el4 = (WebElement) driver.findElement(AppiumBy.accessibilityId("equals"));
-        el4.click();
-        WebElement el5 = (WebElement) driver.findElement((AppiumBy.id("com.google.android.calculator:id/result_final")));
-	    //System.out.println(el4.getText());
-        Assert.assertEquals("4", el5.getText());
+        WebElement resultado = driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final"));
+        Assert.assertEquals("4", resultado.getText());
+    }
 
-        driver.quit();
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        // Apenas tenta reportar se o driver ainda existir
+        if (DriverFactory.getDriver() != null) {
+
+            // Verifica se o teste passou ou falhou
+            boolean passou = result.isSuccess();
+            String status = passou ? "passed" : "failed";
+
+            // Envia o status para o Sauce Labs
+            ((JavascriptExecutor) DriverFactory.getDriver()).executeScript("sauce:job-result=" + status);
+
+            // Finaliza o driver APÓS enviar o status
+            DriverFactory.killDriver();
+        }
     }
 }

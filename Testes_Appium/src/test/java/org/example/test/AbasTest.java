@@ -2,8 +2,8 @@ package org.example.test;
 
 import org.example.page.AbasPage;
 import org.example.page.MenuPage;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class AbasTest extends BaseTest {
 
@@ -17,7 +17,6 @@ public class AbasTest extends BaseTest {
 
         //Verificar que está na aba 1
         Assert.assertTrue(abas.isAba1());;
-
 
         //Acessar aba 2
         abas.clicarAbaDois();

@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.example.core.DriverFactory.getDriver;
 
@@ -28,10 +29,30 @@ public class BasePage {
     }
 
     public void clicarPorTexto(String texto) {
-        clicar(By.xpath("//*[@text='"+texto+"']"));
+        clicar(By.xpath("//*[@text='" + texto + "']"));
     }
 
-    public void selecionarCombo(By by, String valor ) {
+    public void clicarHoraAtual() {
+        clicar(By.xpath("//*[@text='12:00' or @text='09:00']"));
+    }
+
+    public void clicarDuplo(By by) {
+        WebElement elemento = getDriver().findElement(by);
+        Point center = elemento.getLocation();
+        Dimension size = elemento.getSize();
+        int x = center.getX() + size.getWidth() / 2;
+        int y = center.getY() + size.getHeight() / 2;
+
+        ((JavascriptExecutor) getDriver()).executeScript(
+                "mobile: doubleClickGesture",
+                Map.of("x", x, "y", y));
+    }
+
+    public void clicarDuploPorTexto(String texto) {
+        clicarDuplo(By.xpath("//*[@text='" + texto + "']"));
+    }
+
+    public void selecionarCombo(By by, String valor) {
         getDriver().findElement(by).click();
         clicarPorTexto(valor);
     }
@@ -41,7 +62,7 @@ public class BasePage {
     }
 
     public boolean existeElementoPorTexto(String texto) {
-        List<WebElement> elementos = getDriver().findElements(By.xpath("//*[@text = '"+texto+"']"));
+        List<WebElement> elementos = getDriver().findElements(By.xpath("//*[@text = '" + texto + "']"));
         return elementos.size() > 0;
 
     }
@@ -63,28 +84,28 @@ public class BasePage {
         getDriver().perform(Arrays.asList(tap));
     }
 
-    //Gestures reference
-    //https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-draggesture
+    // Gestures reference
+    // https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-draggesture
 
     public void cliqueLongo(By by) {
         ((JavascriptExecutor) getDriver()).executeScript("mobile: longClickGesture", ImmutableMap.of(
                 "elementId", ((RemoteWebElement) getDriver().findElement(by)).getId(),
-                "duration", 1000
-        ));
+                "duration", 1000));
     }
 
-
-    public void scrollDown(){
+    public void scrollDown() {
         scroll(0.1, 0.9);
     }
 
-    public void scrollUp() { scroll(0.9, 0.1);	}
+    public void scrollUp() {
+        scroll(0.9, 0.1);
+    }
 
-    public void swipeLeft(){
+    public void swipeLeft() {
         swipe(0.1, 0.9);
     }
 
-    public void swipeRight(){
+    public void swipeRight() {
         swipe(0.9, 0.1);
     }
 
@@ -105,7 +126,7 @@ public class BasePage {
 
         getDriver().perform(Collections.singletonList(scrollSequence));
 
-        //genericSwipe(x, start_y, x, end_y);
+        // genericSwipe(x, start_y, x, end_y);
     }
 
     public void swipe(double inicio, double fim) {
@@ -118,9 +139,9 @@ public class BasePage {
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence scrollSequence = new Sequence(finger, 1)
-                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),start_x, y))
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), start_x, y))
                 .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofMillis(800), PointerInput.Origin.viewport(),end_x, y))
+                .addAction(finger.createPointerMove(Duration.ofMillis(800), PointerInput.Origin.viewport(), end_x, y))
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         getDriver().perform(Collections.singletonList(scrollSequence));
@@ -134,9 +155,9 @@ public class BasePage {
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence scrollSequence = new Sequence(finger, 1)
-                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),start_x, y))
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), start_x, y))
                 .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofMillis(800), PointerInput.Origin.viewport(),end_x, y))
+                .addAction(finger.createPointerMove(Duration.ofMillis(800), PointerInput.Origin.viewport(), end_x, y))
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         getDriver().perform(Collections.singletonList(scrollSequence));

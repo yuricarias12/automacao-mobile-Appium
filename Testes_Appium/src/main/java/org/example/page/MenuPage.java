@@ -49,7 +49,7 @@ public class MenuPage extends BasePage {
     public void acessarDragNDrop() {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Formulário']")));
-        //scrollDown();
+        scrollDown();
         clicarPorTexto("Drag and drop");
     }
 

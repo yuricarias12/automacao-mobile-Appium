@@ -2,16 +2,16 @@ package org.example.test;
 
 import org.example.page.CliquesPage;
 import org.example.page.MenuPage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class CliquesTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private CliquesPage page = new CliquesPage();
 
-    @Before
+    @BeforeMethod
     public void setup(){
 
         menu.acessarCliques();
@@ -28,8 +28,7 @@ public class CliquesTest extends BaseTest {
 
     @Test
     public void deveRealizarCliqueDuplo(){
-        page.clicarPorTexto("Clique duplo");
-        page.clicarPorTexto("Clique duplo");
+        page.clicarDuploPorTexto("Clique duplo");
 
         Assert.assertEquals("Duplo Clique", page.obterTextoCampo());
     }

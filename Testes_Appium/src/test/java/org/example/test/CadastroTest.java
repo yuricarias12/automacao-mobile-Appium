@@ -4,9 +4,9 @@ import io.appium.java_client.AppiumBy;
 import org.example.core.DriverFactory;
 import org.example.page.FormularioPage;
 import org.example.page.MenuPage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,12 +19,10 @@ public class CadastroTest extends BaseTest {
     private MenuPage menuPage = new MenuPage();
     private FormularioPage formularioPage = new FormularioPage();
 
-
-    @Before
+    @BeforeMethod
     public void inicializarAppium() throws MalformedURLException {
        menuPage.acessarFormulario();
     }
-
 
     @Test
     public void deveRealizarCadastro() throws MalformedURLException {
@@ -70,7 +68,7 @@ public class CadastroTest extends BaseTest {
 
     @Test
     public void deveAlterarHora() {
-        formularioPage.clicarPorTexto("09:00");
+        formularioPage.clicarHoraAtual();
         formularioPage.clicar(new AppiumBy.ByAccessibilityId("20"));
         formularioPage.clicar(new AppiumBy.ByAccessibilityId("40"));
         formularioPage.clicarPorTexto("OK");
