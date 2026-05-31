@@ -2,10 +2,10 @@ package org.example.test;
 
 import org.example.page.MenuPage;
 import org.example.page.SplashPage;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class SplashTeste extends BaseTest {
+public class SplashTest extends BaseTest {
 
     private MenuPage menu = new MenuPage();
     private SplashPage page = new SplashPage();

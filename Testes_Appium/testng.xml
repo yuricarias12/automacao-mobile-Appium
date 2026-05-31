@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite de Testes Mobile" parallel="none" thread-count="1">
+
+    <test name="Teste no Pixel 7">
+        <parameter name="deviceName" value="Google Pixel 7 Pro Emulator"/>
+        <parameter name="platformVersion" value="13.0"/> <packages>
+            <package name="org.example.test.*" />
+        </packages>
+    </test>
+
+    <!-- <test name="Teste no Galaxy S23">
+        <parameter name="deviceName" value="Samsung Galaxy S23"/>
+        <parameter name="platformVersion" value="13.0"/> <packages>
+            <package name="org.example.test.*" />
+        </packages>
+    </test>
+
+    <test name="Teste no Moto G Stylus">
+        <parameter name="deviceName" value="Motorola Moto G Stylus"/>
+        <parameter name="platformVersion" value="12.0"/> <packages>
+            <package name="org.example.test.*" />
+        </packages>
+    </test> -->
+
+</suite>

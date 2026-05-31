@@ -3,9 +3,9 @@ package org.example.test;
 //
 //import org.example.page.MenuPage;
 //import org.example.page.WebViewPage;
-//import org.junit.After;
-//import org.junit.Assert;
-//import org.junit.Test;
+//import org.testng.annotations.AfterMethod;
+//import org.testng.Assert;
+//import org.testng.annotations.Test;
 //
 //public class WebViewTeste extends BaseTest {
 //
@@ -32,7 +32,7 @@ package org.example.test;
 //        Assert.assertEquals("Bem vindo, Wagner!", page.getMensagem());
 //    }
 //
-//    @After
+//    @AfterMethod
 //    public void tearDown(){
 //        page.sairContextoWeb();
 //    }
