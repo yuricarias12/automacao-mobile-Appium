@@ -60,7 +60,7 @@ O objetivo do projeto é aprofundar conhecimentos em:
 
 Antes de executar o projeto localmente, é necessário possuir instalado:
 
-* ☕ Java JDK 11+
+* ☕ Java JDK 11
 * 📦 Maven
 * 🤖 Android Studio
 * 📱 Android SDK
